@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Hire Me - Offer Letter Upload</title>
+   <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #1b1f24;
+            
+            color: #fff;
+        }
+        h1 {
+            text-align: center;
+            color: #fff;
+        }
+        form {
+            background-color: #22282f;
+            padding: 20px;
+            margin: auto;
+            max-width: 500px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            
+        }
+        label {
+            margin-top: 10px;
+            display: block;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    
+    </style>
+</head>
+<body>
+    <h1>Hire Me -<span style="color: #13bbff;"> Upload Offer Letter</h1>
+    <form method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLSfvtmaGkc8It8G-x4vAOF6MDRGPNYir8c0nJV0s5GjI6I-x8w/viewform?usp=header" enctype="multipart/form-data">
+        <label for="name">Name:</label><br>
+        <input type="text" name="name" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" name="email" required><br><br>
+
+        <label for="offer_letter">Upload Offer Letter:</label><br>
+        <input type="file" name="offer_letter" accept="application/pdf" required><br><br>
+
+        <input type="submit" value="Submit" style="background-color: #13bbff; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer;      ">
+    </form>
+
+    <div id="message"></div>
+
+<script>
+function submitForm(event) {
+  event.preventDefault(); // Prevent page reload
+
+  var form = document.getElementById("myForm");
+  var formData = new FormData(form);
+
+  fetch(form.action, {
+    method: "POST",
+    body: formData
+  })
+  .then(response => {
+    if (response.ok) {
+      document.getElementById("message").innerHTML = "<p style='color:green;'>Form submitted successfully!</p>";
+      form.reset();
+    } else {
+      document.getElementById("message").innerHTML = "<p style='color:red;'>Submission failed. Please try again.</p>";
+    }
+  })
+  .catch(error => {
+    document.getElementById("message").innerHTML = "<p style='color:red;'>Error: " + error.message + "</p>";
+  });
+}
+</script>
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            alert('Form submitted successfully!');
+        });
+    </script>
+</body>
+</html>
